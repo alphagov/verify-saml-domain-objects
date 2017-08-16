@@ -1,0 +1,60 @@
+apply plugin: 'java'
+apply plugin: "maven"
+
+repositories {
+    maven { url 'https://artifactory.ida.digital.cabinet-office.gov.uk/artifactory/whitelisted-repos' }
+}
+
+ext {
+    opensaml_version = '3.3.0'
+}
+
+configurations {
+    opensaml
+}
+
+dependencies {
+    opensaml "org.opensaml:opensaml-core:$opensaml_version",
+            "org.opensaml:opensaml-saml-api:$opensaml_version",
+            "org.opensaml:opensaml-xmlsec-api:$opensaml_version",
+            "org.opensaml:opensaml-security-api:$opensaml_version"
+
+    compile configurations.opensaml,
+            "uk.gov.ida:ida-saml-extensions:$opensaml_version-1.2a-23",
+            'joda-time:joda-time:2.9',
+            'com.google.guava:guava:18.0',
+            'uk.gov.ida:security-utils:2.0.0-304',
+            'javax.validation:validation-api:1.1.0.Final'
+
+    testCompile "junit:junit:4.11",
+            'org.assertj:assertj-core:1.6.0'
+}
+
+group = "uk.gov.verify"
+version = "$opensaml_version-${System.env.BUILD_NUMBER ?: 'SNAPSHOT'}"
+
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+publishing {
+    repositories {
+        maven {
+            url "/srv/maven" // change to point to your repo, e.g. http://my.org/repo
+        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = "uk.gov.verify"
+            artifactId = "saml-domain-objects"
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}
+
