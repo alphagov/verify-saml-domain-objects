@@ -23,7 +23,7 @@ dependencies {
             "uk.gov.ida:ida-saml-extensions:$opensaml_version-1.2a-30",
             'joda-time:joda-time:2.9',
             'com.google.guava:guava:18.0',
-            'uk.gov.ida:security-utils:2.0.0-304',
+            'uk.gov.ida:security-utils:2.0.0-309',
             'javax.validation:validation-api:1.1.0.Final'
 
     testCompile "junit:junit:4.11",
