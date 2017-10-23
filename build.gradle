@@ -20,7 +20,7 @@ dependencies {
             "org.opensaml:opensaml-security-api:$opensaml_version"
 
     compile configurations.opensaml,
-            "uk.gov.ida:ida-saml-extensions:$opensaml_version-1.2a-33",
+            "uk.gov.ida:ida-saml-extensions:$opensaml_version-1.2a-34",
             'joda-time:joda-time:2.9',
             'com.google.guava:guava:18.0',
             'uk.gov.ida:security-utils:2.0.0-309',
