@@ -24,7 +24,8 @@ dependencies {
             'joda-time:joda-time:2.9',
             'com.google.guava:guava:18.0',
             'uk.gov.ida:security-utils:2.0.0-309',
-            'javax.validation:validation-api:1.1.0.Final'
+            'javax.validation:validation-api:1.1.0.Final',
+            'uk.gov.ida:ida-dev-pki:1.1.0-19'
 
     testCompile "junit:junit:4.11",
             'org.assertj:assertj-core:1.6.0'
